@@ -80,7 +80,7 @@ func (r *requestRetryable) Attempt() (bool, error) {
 		r.request.Body = ioutil.NopCloser(seekable)
 
 		if err != nil {
-			return false, bosherr.WrapErrorf(err, "Seeking to begining of seekable request body during attempt %d", r.attempt)
+			return false, bosherr.WrapErrorf(err, "Seeking to beginning of seekable request body during attempt %d", r.attempt)
 		}
 	} else {
 		if r.request.Body != nil && r.bodyBytes == nil {
