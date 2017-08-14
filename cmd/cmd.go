@@ -381,6 +381,10 @@ func (c Cmd) Execute() (cmdErr error) {
 	case *VariablesOpts:
 		return NewVariablesCmd(deps.UI, c.deployment()).Run()
 
+	case *CreateStemcellOpts:
+		stage := boshui.NewStage(deps.UI, deps.Time, deps.Logger)
+		return NewCreateStemcellCmd(deps, deps.Logger).Run(stage, *opts)
+
 	default:
 		return fmt.Errorf("Unhandled command: %#v", c.Opts)
 	}

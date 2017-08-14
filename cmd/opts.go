@@ -155,6 +155,9 @@ type BoshOpts struct {
 	UploadBlobs UploadBlobsOpts `command:"upload-blobs" description:"Upload blobs"`
 
 	Variables VariablesOpts `command:"variables" alias:"vars" description:"List variables"`
+
+	// CPI commands
+	CreateStemcell CreateStemcellOpts `command:"create-stemcell" hidden:"true" description:"Creates a reusable VM image in the IaaS from the stemcell image."`
 }
 
 type HelpOpts struct {
@@ -909,6 +912,16 @@ type VariablesOpts struct {
 	Deployment string
 	cmd
 }
+
+type CreateStemcellOpts struct {
+	Manifest  FileBytesWithPathArg `long:"manifest" description:"Path to a manifest file" required:"true"`
+	StatePath string               `long:"state" value-name:"PATH" description:"State file path"`
+	VarFlags
+	OpsFlags
+
+	cmd
+}
+
 
 type cmd struct{}
 
